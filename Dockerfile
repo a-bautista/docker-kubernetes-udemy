@@ -7,7 +7,9 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-FROM nginx 
+FROM nginx
+# EXPOSE is communication between developers  
+EXPOSE 80
 COPY --from=builder /app/build /usr/share/nginx/html
 
 

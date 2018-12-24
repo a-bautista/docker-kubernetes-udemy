@@ -5,10 +5,10 @@ services:
         - docker
 
 before_install:        
-        - docker build -t alexbr9007/Docker_Kubernetes_Udemy/docker-react -f Dockerfile.dev .
+        - docker build -t alexbr9007/docker-kubernetes-udemy/docker-react -f Dockerfile.dev .
 
 script:
-        - docker run alexbr9007/Docker_Kubernetes_Udemy/docker-react npm run test -- --coverage
+        - docker run alexbr9007/docker-kubernetes-udemy/docker-react npm run test -- --coverage
 
 
         

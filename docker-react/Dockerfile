@@ -1,3 +1,5 @@
+# This file is used to create the production environment.
+
 FROM node:alpine as builder
 WORKDIR '/app'
 COPY package.json .

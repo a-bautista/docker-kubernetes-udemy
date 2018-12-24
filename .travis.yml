@@ -5,11 +5,25 @@ services:
         - docker
 
 before_install:        
-        - docker build -t alexbr9007/docker-kubernetes-udemy/docker-react -f Dockerfile.dev .
+        - docker build -t alexbr9007/docker-kubernetes-udemy -f Dockerfile.dev .
 
 script:
-        - docker run alexbr9007/docker-kubernetes-udemy/docker-react npm run test -- --coverage
+        - docker run alexbr9007/docker-kubernetes-udemy npm run test -- --coverage
 
-
+deploy:
+        provider: elasticbeanstalk
+        region: "us-west-2"
+        app: "docker-react"
+        env: "DockerReact-env"
+        bucket_name: "elasticbeanstalk-us-west-2-401387916447"
         
+        # bucket_path has the same name as your app
+        bucket_path: "docker-react"
+        
+        on:
+          branch: master
+        
+        access_key_id: $AWS_ACCESS_KEY
+        secret_access_key:
+                secure: "$AWS_SECRET_KEY"
 

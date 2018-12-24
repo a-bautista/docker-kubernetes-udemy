@@ -1,0 +1,13 @@
+# Define the version of docker compose
+version: '3'
+services: 
+    redis-server:
+            # this image is located in the docker server from my machine
+            image: 'redis'
+    node-app:
+            # the image from node-app is located in the image that is generated from the Dockerfile - that is why I use the .
+            restart: on-failure
+            build: . 
+            ports: 
+                - "4001:8081"
+

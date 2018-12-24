@@ -1,4 +1,4 @@
-# need super user privileges
+# need super user privileges to execute the following commands
 sudo: required
 services:
         - docker

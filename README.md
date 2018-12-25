@@ -15,7 +15,9 @@ Docker makes it simple to install and run software without worrying about setup 
 
 ## Useful commands to know in Docker
 
-`docker-compose up` 
+### `docker-compose up` 
+
+It is used to start multiple Docker containers at the same time.
 
 `docker ps`
 
@@ -24,6 +26,8 @@ Docker makes it simple to install and run software without worrying about setup 
 `docker rmi <image_id>`
 
 `docker rmi <name_of_the_container>`
+
+## How does Docker work?
 
 
 

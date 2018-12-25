@@ -1,3 +1,13 @@
+This project contains useful notes to understand the basics of Docker and Kubernetes. 
+
+## What is Docker?
+
+Docker is a platform or ecosystem for creating and running containers. 
+
+## What is a container? 
+
+Docker works with images which are files that contain all dependencies and configuration files for running a program. <b>When an image is running or when it is instantiated then we say we have a container</b>. Containers have its own isolated configuration of hardware. 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

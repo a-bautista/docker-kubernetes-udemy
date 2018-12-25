@@ -6,7 +6,26 @@ Docker is a platform or ecosystem for creating and running containers.
 
 ## What is a container? 
 
-Docker works with images which are files that contain all dependencies and configuration files for running a program. <b>When an image is running or when it is instantiated then we say we have a container</b>. Containers have its own isolated configuration of hardware. 
+Docker works with images which are files that contain all dependencies and configuration files for running a program. <b>When an image is running or when it is instantiated then we say we have a container</b>. Containers have its own isolated configuration of hardware, that is, the hardware from your computer is not related to the hardware of the image. 
+
+## Why use Docker?
+
+Docker makes it simple to install and run software without worrying about setup or dependency libraries. 
+
+
+## Useful commands to know in Docker
+
+`docker-compose up` 
+
+`docker ps`
+
+`docker ps -a`
+
+`docker rmi <image_id>`
+
+`docker rmi <name_of_the_container>`
+
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

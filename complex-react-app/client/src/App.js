@@ -13,23 +13,14 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-	  <h1>Welcome to React</h1>
+	  <h1 className="App-logo">Welcome to React</h1>
 	  <Link to="/">Home</Link>
 	  <Link to="/otherpage">Other page</Link>
 	</header>
-	  <div>
+	<div>
 	      <Route exact path="/" component={Fib} />
 	      <Route exact path="/otherpage" component={OtherPage} />
-	  </div>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+	</div>
       </div>
      </Router>
     );

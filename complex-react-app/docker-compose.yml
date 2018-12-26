@@ -35,6 +35,9 @@ services:
                 - /app/node_modules
                 - ./client:/app
         worker:
+            environment:
+                - REDIS_HOST = redis
+                - REDIS_PORT = 6379
             build:
                 dockerfile: Dockerfile.dev
                 context: ./worker

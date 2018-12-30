@@ -12,7 +12,6 @@ Docker works with images which are files that contain all dependencies and confi
 
 Docker makes it simple to install and run software without worrying about setup or dependency libraries. 
 
-
 ## Useful commands to know in Docker
 
 ### `docker run <image_name>` 
@@ -61,7 +60,7 @@ When you initialize an image,i.e., `docker run hello-world`, the docker client i
 
 ## Containers
 
-Remember that a container is an instance of an image that is running. Suppose we want to run a legacy program that needs Python 2.7 and you need to use Chrome which needs needs Python 3.7. How do do you setup these 2 Python versions in one same machine? You can use containers to maintain both versions of Python.
+Remember that a container is an instance of an image that is running. Suppose we want to run a legacy program that needs Python 2.7 and you need to use Chrome which needs needs Python 3.7. How do you setup these 2 Python versions in one same machine? You can use containers to maintain both versions of Python.
 
      ________________________________________ 
     |  Conatiner A           Container B     |
@@ -81,14 +80,63 @@ Both versions of Python are stored in the Hard disk because a <b>namespace</b> o
 
 Remember that namespacing and control groups belong to Linux and when you install Docker in Windows or MACOS, a Linux virtual machine gets installed so you can use the namespacing and control groups.
 
-## Available Scripts
+## Images
 
-In the project directory, you can run:
+An image has a file system snapshot, dependencies and startup commands to execute a program. 
+          ____________________________________________________
+         |                          Image                     |
+         | -------------------------------------------------- |
+         | File System snapshot       |                       |
+         | -------------------------- | ----------------------|
+         | Legacy program, Python 2.7 | Python setup.py build |
+         |____________________________________________________|
+         
+Note that <i>image_id</i> or <i>container_id</i> are used indistinctible in the following commands but just recap that a container is an image which is being executed. 
 
-### `npm start`
+Docker command to create an image.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### `docker create <image_name> <command>`
+
+Docker command to start an image.
+
+### `docker start -a <image_id>`
+
+Docker command to create and start an image at the same time.
+
+### `docker run <image_name>`
+
+Erase all the containers that were executed and remove images from the image cache.
+
+### `docker system prune`
+
+Review the logs of a container
+
+### `docker logs <container_id>
+
+Stop a container 
+
+### `docker stop <container_id>
+
+Stop a container immediately
+
+### `docker kill <container_id>
+
+Execute a command in a container (you need to open another terminal tab and run this command while the container is up).
+
+### `docker exec -it <container_id> <command_to_run>
+
+Start a shell in the container.
+
+### `docker exec -it <container_id> sh
+
+## How to create your own images in Docker?
+
+In order to run your images as containers you need to create a Dockerfile by:
+
+1. Specifying a base image.
+2. Executing some commands to add extra software.
+3. Specifying commands to initialize the image as a container when the system starts.
+
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.

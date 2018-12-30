@@ -84,11 +84,16 @@ Remember that namespacing and control groups belong to Linux and when you instal
 
 An image has a file system snapshot, dependencies and startup commands to execute a program. 
           ____________________________________________________
+         |                                                    |
          |                          Image                     |
          | -------------------------------------------------- |
-         | File System snapshot       |                       |
+         |                            |                       |
+         | File System snapshot       | Startup commands      |
+         |                            |                       |
          | -------------------------- | ----------------------|
+         |                            |                       |
          | Legacy program, Python 2.7 | Python setup.py build |
+         |                            |                       |
          |____________________________________________________|
          
 Note that <i>image_id</i> or <i>container_id</i> are used indistinctible in the following commands but just recap that a container is an image which is being executed. 
@@ -111,23 +116,23 @@ Erase all the containers that were executed and remove images from the image cac
 
 Review the logs of a container
 
-### `docker logs <container_id>
+### `docker logs <container_id>`
 
 Stop a container 
 
-### `docker stop <container_id>
+### `docker stop <container_id>`
 
 Stop a container immediately
 
-### `docker kill <container_id>
+### `docker kill <container_id>`
 
 Execute a command in a container (you need to open another terminal tab and run this command while the container is up).
 
-### `docker exec -it <container_id> <command_to_run>
+### `docker exec -it <container_id> <command_to_run>`
 
 Start a shell in the container.
 
-### `docker exec -it <container_id> sh
+### `docker exec -it <container_id> sh`
 
 ## How to create your own images in Docker?
 
@@ -137,14 +142,62 @@ In order to run your images as containers you need to create a Dockerfile by:
 2. Executing some commands to add extra software.
 3. Specifying commands to initialize the image as a container when the system starts.
 
+This is a classic example of how to write a Docker file:
+
+### FROM alpine
+### RUN apk add --update redis
+### CMD ["redis-server"]
+
+In the lines from above, I am specifying to the Docker server to use alpine to download a set of pre-installed programs, then Docker updates redis and initializes the redis server. 
+
+This is how you can build your image once you have set up the docker file.
+
+## `docker build .`
+
+This is what happens when you build your image:
+          
+             _______________________________________
+            |                                       |
+            |              My computer              |
+            |   ---------------------------------   |
+            |  |                                |   |
+            |  |  Container                     |   |
+            |  | -------------------------------|   |
+            |  |    ---------------             |   |
+            |  |   |  redis-server |            |   |
+            |  |    ---------------             |   |
+            |  |           |                    |   |
+            |  |           v                    |   |
+            |  || ----------------------------------|   
+            |  ||        Kernel                     |
+            |  ||-----------------------------------|
+            |  |                                |   |       
+            |  |  ------   -------   -----      |   |
+            |  | |  RAM | |Network| | CPU |     |   |
+            |  |  ------   -------   -----      |   |
+            |  |  Files                         |   |
+            |  |                                |   |
+            |  |   -----  ----  ----            |   |
+            |  |  | bin | dev | etc |           |   |
+            |  ---------------------------------|   |
+            |_______________________________________|  
+
+The image gets built and a specific portion of RAM, CPU and processes have been created as well as a file system. Once the image is running, which is a container, it interacts with your machine so you can execute your desired instructions. 
+
+Tag your docker images
+
+## `docker build -t alejandro/pythonprogram:latest .`
+
+Port mapping - this is a very important topic because once your container is up and running, you can get access to it either through the shell or by a port, that is, in your browser you can see the results of your container. The first port is your machine port and the second port is the port from your container.
+
+## `docker run -p 3001:8080 alejandro/pythonprogram`
+
 
 The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
+You will also see any lint errors in th
 
 Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+See the section about [running tets](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 

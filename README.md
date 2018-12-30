@@ -15,7 +15,7 @@ Docker makes it simple to install and run software without worrying about setup 
 
 ## Useful commands to know in Docker
 
-### `docker run <image_name> 
+### `docker run <image_name>` 
 
 Execute an image container with docker.
 
@@ -45,7 +45,6 @@ Remove a docker image from the docker image cache by providing the name of the c
 
 ## How does Docker work?
 
-
 When you initialize an image,i.e., `docker run hello-world`, the docker client in your machine checks if you already have that image in your image cache and if this is not the case then the docker client contacts the docker server so this one contacts the DockerHub to request the image, then the image is stored in your image cache so you can have it ready the next time you want to execute it.
 
       _________________
@@ -59,7 +58,28 @@ When you initialize an image,i.e., `docker run hello-world`, the docker client i
      |   image cache   |
      |_________________|
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Containers
+
+Remember that a container is an instance of an image that is running. Suppose we want to run a legacy program that needs Python 2.7 and you need to use Chrome which needs needs Python 3.7. How do do you setup these 2 Python versions in one same machine? You can use containers to maintain both versions of Python.
+
+     ________________________________________ 
+    |  Conatiner A           Container B     |
+    |   ----------------    --------------   |
+    |  | Legacy program |  |   Chrome     |  |
+    |  |      |         |  |      |       |  |
+    |  |      v         |  |      v       |  |
+    | -------------------------------------- |
+    | ||  Python 2.7    |  |   Python 3.7 || |
+    | ||                |  |              || |
+    | | ----------------    -------------- | |
+    | |              Hard Disk             | |
+    | |------------------------------------| |
+    | ______________________________________ |
+
+Both versions of Python are stored in the Hard disk because a <b>namespace</b> or dedicated space in your disk was dedicated for both versions. Container A has isolated resources and processes for executing Python 2.7 without interfering the processes and resources for Container B. 
+
+Remember that namespacing and control groups belong to Linux and when you install Docker in Windows or MACOS, a Linux virtual machine gets installed so you can use the namespacing and control groups.
 
 ## Available Scripts
 

@@ -199,7 +199,7 @@ Debug a container by getting access to its shell:
 
 Debug a container by getting access to its shell when it is already running:
 
-## `docker exec -it <image_id> sh
+## `docker exec -it <image_id> sh`
 
 ## Run multiple Docker containers with Docker Compose
 
@@ -208,6 +208,10 @@ Docker compose allows us to start multiple Docker containers at the same time, f
 Execute the `.yml` file to initialize the multiple containers.
 
 ## `docker-compose up` 
+
+Rebuild the docker file image.
+
+## `docker build .`
 
 Rebuild the `.yml` file and initialize the multiple containers.
 
@@ -221,15 +225,28 @@ Shutdown the multiple docker containers.
 
 ## `docker-compose down`
 
-Rebuild a single docker image (Dockerfile.dev)
+Rebuild a single docker image (Dockerfile.dev). We usually use this command with the -f for rebuilding the .dev file.
 
 ## `docker build -f Dockerfile.dev .`
 
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tets](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Docker volumes
 
-### `npm run build`
+Whenever we edit any file from the local folder, then we have to rebuild the image with docker to reflect the changes but you can use docker volumes to avoid this step.
+
+                _________________         _____________________
+               |                 |       |                     |
+               |   Local folder  |       |   Docker container  |
+                -----------------        ----------------------|
+               |    frontend     |  <--- |      reference      |
+               |-----------------|       |---------------------|
+               |      /src       |  <--- |      reference      |
+               |_________________|       |_____________________|
+
+
+The docker volumes can be initialized in the `.yml` file or by terminal command with:
+
+## `docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app <image_id> 
 
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.

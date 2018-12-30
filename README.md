@@ -15,21 +15,49 @@ Docker makes it simple to install and run software without worrying about setup 
 
 ## Useful commands to know in Docker
 
+### `docker run <image_name> 
+
+Execute an image container with docker.
+
 ### `docker-compose up` 
 
 It is used to start multiple Docker containers at the same time.
 
-`docker ps`
+### `docker ps`
 
-`docker ps -a`
+It lists all the containers that are currently running. 
 
-`docker rmi <image_id>`
+### `docker ps -a`
 
-`docker rmi <name_of_the_container>`
+Same as `docker ps` but with more detailed information.
+
+### `docker ps --all`
+
+Lists all the containers that were executed.
+
+### `docker rmi <image_id>`
+
+Remove a docker image from the docker image cache by providing the image_id.
+
+### `docker rmi <name_of_the_container>`
+
+Remove a docker image from the docker image cache by providing the name of the container.
 
 ## How does Docker work?
 
 
+When you initialize an image,i.e., `docker run hello-world`, the docker client in your machine checks if you already have that image in your image cache and if this is not the case then the docker client contacts the docker server so this one contacts the DockerHub to request the image, then the image is stored in your image cache so you can have it ready the next time you want to execute it.
+
+      _________________
+     |                 |
+     |   docker client |
+     |        |        |
+     |        v        |
+     |   docker server |-----> when image not found, then docker server contacts ----> Docker Hub
+     |        |        |
+     |        v        |
+     |   image cache   |
+     |_________________|
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

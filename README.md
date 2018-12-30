@@ -83,7 +83,8 @@ Remember that namespacing and control groups belong to Linux and when you instal
 ## Images
 
 An image has a file system snapshot, dependencies and startup commands to execute a program. 
-          ____________________________________________________
+         
+          _____________________________________________________
          |                                                    |
          |                          Image                     |
          | -------------------------------------------------- |
@@ -192,9 +193,38 @@ Port mapping - this is a very important topic because once your container is up 
 
 ## `docker run -p 3001:8080 alejandro/pythonprogram`
 
+Debug a container by getting access to its shell:
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in th
+## `docker run -it alejandro/pythonprogram sh`
+
+Debug a container by getting access to its shell when it is already running:
+
+## `docker exec -it <image_id> sh
+
+## Run multiple Docker containers with Docker Compose
+
+Docker compose allows us to start multiple Docker containers at the same time, for instance, if we want to start a redis server and a node server then we can create this in a `docker-compose.yml` file.
+
+Execute the `.yml` file to initialize the multiple containers.
+
+## `docker-compose up` 
+
+Rebuild the `.yml` file and initialize the multiple containers.
+
+## `docker-compose up --build`
+
+Start all your docker images and put them in the background.
+
+## `docker-compose up -d`
+
+Shutdown the multiple docker containers.
+
+## `docker-compose down`
+
+Rebuild a single docker image (Dockerfile.dev)
+
+## `docker build -f Dockerfile.dev .`
+
 
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tets](https://facebook.github.io/create-react-app/docs/running-tests) for more information.

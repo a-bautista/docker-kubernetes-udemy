@@ -1,5 +1,16 @@
 This project contains useful notes to understand the basics of Docker and Kubernetes. 
 
+### Table of contents
+
+|No| folder name               | Content description |
+|--|:--------------------------|:--------------------|
+|1 | previous-to-docker-react  | Files that demonstrate how to add a simple docker image and how to run it (hello-world and redis-image folders) and how to debug an app while it is being executed (simpleweb and visits folder).|
+|2 | multi-docker              | See the deploy of a fully working project in React while using Docker. |
+
+
+
+Reference notes
+
 ## What is Docker?
 
 Docker is a platform or ecosystem for creating and running containers. 

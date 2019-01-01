@@ -5,11 +5,11 @@ This project contains useful notes to understand the basics of Docker and Kubern
 |No| folder name               | Content description |
 |--|:--------------------------|:--------------------|
 |1 | previous-to-docker-react  | Files that demonstrate how to add a simple docker image and how to run it (hello-world and redis-image folders) and how to debug an app while it is being executed (simpleweb and visits folder).|
-|2 | multi-docker              | See the deploy of a fully working project in React while using Docker. |
+|2 | files with no folder      | The set of files that are in the main folder were used to show how to automate the process of uploading docker images to Docker Hub and via Travis and then getting the updating copies in an app.|
+|3 | multi-docker              | Working app that uses Docker hub as a reference to get the updated images from Docker hub and then changes are reflected immediately in the working app.|
 
 
-
-Reference notes
+## Reference notes
 
 ## What is Docker?
 

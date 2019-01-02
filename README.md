@@ -6,7 +6,7 @@ This project contains useful notes to understand the basics of Docker and Kubern
 |--|:--------------------------|:--------------------|
 |1 | previous-to-docker-react  | Files that demonstrate how to add a simple docker image and how to run it (hello-world and redis-image folders) and how to create a docker file and build its context (simpleweb and visits folder).|
 |2 | files with no folder      | The set of files that are in the main folder were used to show how to automate the process of uploading docker images to Docker Hub and via Travis and then getting the updating copies in an app.|
-|3 | multi-docker              | Working app that uses Docker hub as a reference to get the updated images from Docker hub and then changes are reflected immediately in the working app.|
+|3 | complex-react-app         | Working app that uses Docker hub as a reference to get the updated images from Docker hub and then changes are reflected immediately in the working app. Also, multiple services are initiated such as an express server, a postgres db, a redis server and a worker.|
 
 ### previous-to-docker-react 
 
@@ -15,6 +15,10 @@ This project contains useful notes to understand the basics of Docker and Kubern
 <b>simpleweb</b> shows how to build a docker file and then how to execute it with `docker build .`. Once you have built the docker image you can to tag it with `docker build -t previous-docker-react/simpleweb:latest . ` where previous-to-docker is like an <i>id</i>, <i>simpleweb</i> is the name of the project and <i>:latest</i> is the version. Remember that what the previous commands perform is to install the dependencies from the package.json file which contains the express dependency and a script to execute the index.js file. In order to make this a Docker container you have to execute `docker run -p 8080:8080 previous-to-docker/simpleweb` and then you will this app mapped into port 8080. 
 
 <b>visits</b> shows how to build a <i>docker-compose</i> file which indicates the <i>multiple services</i> that are going to be established. In my docker-compose.yml file I indicated to establish a redis server and launch a node app in specific ports. In order to initialize the multiple services in docker containers at the same time you have to execute `docker-compose up --build` to build the image and run the image at the same time. If you only need to run the multiple services without rebuilding the image then you can use `docker-compose up` to initialize all the services.
+
+### complex-react-app
+
+This app describes how to initialize multiple services in a docker compose file. The services we have are a React app, an express server, a redis server, a postgres db and a worker. See diagrams to have a full picture about how these services interact with each other.
 
 ### Reference notes
 

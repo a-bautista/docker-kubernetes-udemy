@@ -18,7 +18,7 @@ This project contains useful notes to understand the basics of Docker and Kubern
 
 ### complex-react-app
 
-This app describes how to initialize multiple services in a docker compose file. The services we have are a React app, an express server, a redis server, a postgres db and a worker. See diagrams to have a full picture about how these services interact with each other.
+This app describes how to initialize multiple services in a docker compose file and how to set the deploy process by using a .travis file. The services we have are a React app, an express server, a redis server, a postgres db and a worker - see diagrams to have a full picture about how these services interact with each other.
 
 ### Reference notes
 

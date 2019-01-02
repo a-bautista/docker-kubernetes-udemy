@@ -14,8 +14,7 @@ This project contains useful notes to understand the basics of Docker and Kubern
 
 <b>simpleweb</b> shows how to build a docker file and then how to execute it with `docker build .`. Once you have built the docker image you can to tag it with `docker build -t previous-docker-react/simpleweb:latest . ` where previous-to-docker is like an <i>id</i>, <i>simpleweb</i> is the name of the project and <i>:latest</i> is the version. Remember that what the previous commands perform is to install the dependencies from the package.json file which contains the express dependency and a script to execute the index.js file. In order to make this a Docker container you have to execute `docker run -p 8080:8080 previous-to-docker/simpleweb` and then you will this app mapped into port 8080. 
 
-
- <b>visits</b> container  
+<b>visits</b> shows how to build a <i>docker-compose</i> file which indicates the <i>multiple services</i> that are going to be established. In my docker-compose.yml file I indicated to establish a redis server and launch a node app in specific ports. In order to initialize the multiple services in docker containers at the same time you have to execute `docker-compose up --build` to build the image and run the image at the same time. If you only need to run the multiple services without rebuilding the image then you can use `docker-compose up` to initialize all the services.
 
 ### Reference notes
 

@@ -16,11 +16,28 @@
 
 <b>visits</b> shows how to build a <i>docker-compose</i> file which indicates the <i>multiple services</i> that are going to be established. In my docker-compose.yml file I indicated to establish a redis server and launch a node app in specific ports. In order to initialize the multiple services in docker containers at the same time you have to execute `docker-compose up --build` to build the image and run the image at the same time. If you only need to run the multiple services without rebuilding the image then you can use `docker-compose up` to initialize all the services. Notice that in this folder I set up the restarting policies (see attached image). 
 
+### files with no folder
+
 ### complex-react-app
 
-This app describes how to initialize multiple services in a docker compose file and how to set the deploy process by using a .travis file. The services we have are a React app, an express server, a redis server, a postgres db and a worker - see diagrams to have a full picture about how these services interact with each other.
+This app describes how to initialize multiple services in a docker compose file and how to set the deploy process by using a .travis file. The services we have are a React app, an express server, a redis server, a postgres db and a worker - see diagrams to have a full picture about how these services interact with each other. 
 
-### Reference notes
+Multi step process: We will have multiple steps in our docker file to initiate nginx, the react app, the worker and the node server. For every service we need a separate docker file.
+
+<b>Build phase</b>
+1. node:alpine gets all the required files to install dependencies
+2. copy package.json file 
+3. install dependencies
+4. run `npm run build`
+
+<b>Run phase</b>
+1. Use nginx
+2. Copy over the result of `npm run build`
+3. start nginx
+
+In order to start using the set of container for this multi-docker set of images just run `docker-compose up` to initialize the container and if you do any changes to the images then do not forget to rebuild the images with `docker-compose up --build`. 
+
+## Reference notes
 
 ## What is Docker?
 

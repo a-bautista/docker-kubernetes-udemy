@@ -1,4 +1,5 @@
 # This file is used as a substitute of the long command docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app <image_id>
+# The command from above is just doing a port mapping to connect with the node_modules through Docker volumes.
 version: '3'
 services: 
      # first container - initialize the web app

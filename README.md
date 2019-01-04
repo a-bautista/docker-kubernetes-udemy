@@ -95,7 +95,7 @@ Remove a docker image from the docker image cache by providing the image_id.
 
 Remove a docker image from the docker image cache by providing the name of the container.
 
-##### How does Docker work?
+#### How does Docker work?
 
 When you initialize an image,i.e., `docker run hello-world`, the docker client in your machine checks if you already have that image in your image cache and if this is not the case then the docker client contacts the docker server so this one contacts the DockerHub to request the image, then the image is stored in your image cache so you can have it ready the next time you want to execute it.
 
@@ -111,7 +111,7 @@ When you initialize an image,i.e., `docker run hello-world`, the docker client i
      |_________________|
 
 
-##### Containers
+#### Containers
 
 Remember that a container is an instance of an image that is running. Suppose we want to run a legacy program that needs Python 2.7 and you need to use Chrome which needs needs Python 3.7. How do you setup these 2 Python versions in one same machine? You can use containers to maintain both versions of Python.
 
@@ -133,7 +133,7 @@ Both versions of Python are stored in the Hard disk because a <b>namespace</b> o
 
 Remember that namespacing and control groups belong to Linux and when you install Docker in Windows or MACOS, a Linux virtual machine gets installed so you can use the namespacing and control groups.
 
-## Images
+#### Images
 
 An image has a file system snapshot, dependencies and startup commands to execute a program. 
          
@@ -154,41 +154,41 @@ Note that <i>image_id</i> or <i>container_id</i> are used indistinctible in the 
 
 Docker command to create an image.
 
-### `docker create <image_name> <command>`
+##### `docker create <image_name> <command>`
 
 Docker command to start an image.
 
-### `docker start -a <image_id>`
+##### `docker start -a <image_id>`
 
 Docker command to create and start an image at the same time.
 
-### `docker run <image_name>`
+##### `docker run <image_name>`
 
 Erase all the containers that were executed and remove images from the image cache.
 
-### `docker system prune`
+##### `docker system prune`
 
 Review the logs of a container
 
-### `docker logs <container_id>`
+##### `docker logs <container_id>`
 
 Stop a container 
 
-### `docker stop <container_id>`
+##### `docker stop <container_id>`
 
 Stop a container immediately
 
-### `docker kill <container_id>`
+##### `docker kill <container_id>`
 
 Execute a command in a container (you need to open another terminal tab and run this command while the container is up).
 
-### `docker exec -it <container_id> <command_to_run>`
+##### `docker exec -it <container_id> <command_to_run>`
 
 Start a shell in the container.
 
-### `docker exec -it <container_id> sh`
+##### `docker exec -it <container_id> sh`
 
-## How to create your own images in Docker?
+#### How to create your own images in Docker?
 
 In order to run your images as containers you need to create a Dockerfile by:
 
@@ -198,15 +198,15 @@ In order to run your images as containers you need to create a Dockerfile by:
 
 This is a classic example of how to write a Docker file:
 
-### FROM alpine
-### RUN apk add --update redis
-### CMD ["redis-server"]
+##### FROM alpine
+##### RUN apk add --update redis
+##### CMD ["redis-server"]
 
 In the lines from above, I am specifying to the Docker server to use alpine to download a set of pre-installed programs, then Docker updates redis and initializes the redis server. 
 
 This is how you can build your image once you have set up the docker file.
 
-## `docker build .`
+##### `docker build .`
 
 This is what happens when you build your image:
           
@@ -240,50 +240,49 @@ The image gets built and a specific portion of RAM, CPU and processes have been 
 
 Tag your docker images
 
-## `docker build -t alejandro/pythonprogram:latest .`
+##### `docker build -t alejandro/pythonprogram:latest .`
 
 Port mapping - this is a very important topic because once your container is up and running, you can get access to it either through the shell or by a port, that is, in your browser you can see the results of your container. The first port is your machine port and the second port is the port from your container.
 
-## `docker run -p 3001:8080 alejandro/pythonprogram`
+##### `docker run -p 3001:8080 alejandro/pythonprogram`
 
 Debug a container by getting access to its shell:
 
-## `docker run -it alejandro/pythonprogram sh`
+##### `docker run -it alejandro/pythonprogram sh`
 
 Debug a container by getting access to its shell when it is already running:
 
-## `docker exec -it <image_id> sh`
+##### `docker exec -it <image_id> sh`
 
-## Run multiple Docker containers with Docker Compose
+#### Run multiple Docker containers with Docker Compose
 
 Docker compose allows us to start multiple Docker containers at the same time, for instance, if we want to start a redis server and a node server then we can create this in a `docker-compose.yml` file.
 
 Execute the `.yml` file to initialize the multiple containers.
 
-## `docker-compose up` 
+##### `docker-compose up` 
 
 Rebuild the docker file image.
 
-## `docker build .`
+##### `docker build .`
 
 Rebuild the `.yml` file and initialize the multiple containers.
 
-## `docker-compose up --build`
+##### `docker-compose up --build`
 
 Start all your docker images and put them in the background.
 
-## `docker-compose up -d`
+##### `docker-compose up -d`
 
 Shutdown the multiple docker containers.
 
-## `docker-compose down`
+##### `docker-compose down`
 
 Rebuild a single docker image (Dockerfile.dev). We usually use this command with the -f for rebuilding the .dev file.
 
-## `docker build -f Dockerfile.dev .`
+##### `docker build -f Dockerfile.dev .`
 
-
-## Docker volumes
+#### Docker volumes
 
 Whenever we edit any file from the local folder, then we have to rebuild the image with docker to reflect the changes but you can use docker volumes to avoid this step.
 
@@ -299,4 +298,6 @@ Whenever we edit any file from the local folder, then we have to rebuild the ima
 
 The docker volumes can be initialized in the `.yml` file or by terminal command with:
 
-## `docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app <image_id> 
+##### `docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app <image_id> 
+
+Please refer to the docker-compose.yml file from the root folder to see how we converted this command into a script to be executed by Docker when doing `docker-compose up`. 

@@ -1,4 +1,4 @@
-﻿This project contains useful notes to understand the basics of Docker and Kubernetes. 
+﻿<b>Summary:</b> This project contains useful notes to understand the basics of Docker. Refer to the repo multi-docker-dockerhub-ci to see the notes related to Kubernetes and the full integration with docker.  
 
 ### Table of contents
 

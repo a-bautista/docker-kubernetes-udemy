@@ -152,41 +152,42 @@ An image has a file system snapshot, dependencies and startup commands to execut
          
 Note that <i>image_id</i> or <i>container_id</i> are used indistinctible in the following commands but just recap that a container is an image which is being executed. 
 
-Docker command to create an image.
 
 ##### `docker create <image_name> <command>`
 
-Docker command to start an image.
+Docker command to create an image.
 
 ##### `docker start -a <image_id>`
 
-Docker command to create and start an image at the same time.
+Docker command to start an image.
 
 ##### `docker run <image_name>`
 
-Erase all the containers that were executed and remove images from the image cache.
+Docker command to create and start an image at the same time.
 
 ##### `docker system prune`
 
-Review the logs of a container
+Erase all the containers that were executed and remove images from the image cache.
 
 ##### `docker logs <container_id>`
 
-Stop a container 
+Review the logs of a container
 
 ##### `docker stop <container_id>`
 
-Stop a container immediately
+Stop a container 
 
 ##### `docker kill <container_id>`
 
-Execute a command in a container (you need to open another terminal tab and run this command while the container is up).
+Stop a container immediately
 
 ##### `docker exec -it <container_id> <command_to_run>`
 
-Start a shell in the container.
+Execute a command in a container (you need to open another terminal tab and run this command while the container is up).
 
 ##### `docker exec -it <container_id> sh`
+
+Start a shell in the container.
 
 #### How to create your own images in Docker?
 
@@ -298,6 +299,6 @@ Whenever we edit any file from the local folder, then we have to rebuild the ima
 
 The docker volumes can be initialized in the `.yml` file or by terminal command with:
 
-##### `docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app <image_id> 
+##### `docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app <image_id>` 
 
 Please refer to the docker-compose.yml file from the root folder to see how we converted this command into a script to be executed by Docker when doing `docker-compose up`. 

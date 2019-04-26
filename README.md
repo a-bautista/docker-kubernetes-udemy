@@ -67,21 +67,13 @@ Docker makes it simple to install and run software without worrying about setup 
 
 #### Useful commands to know in Docker
 
-##### `docker run <image_name>` 
+##### `docker run <image_name>` - Execute an image container with docker.
 
-Execute an image container with docker.
+##### `docker-compose up` - It is used to start multiple Docker containers at the same time.
 
-##### `docker-compose up` 
+##### `docker ps` - It lists all the containers that are currently running. 
 
-It is used to start multiple Docker containers at the same time.
-
-##### `docker ps`
-
-It lists all the containers that are currently running. 
-
-##### `docker ps -a`
-
-Same as `docker ps` but with more detailed information.
+##### `docker ps -a` - Same as `docker ps` but with more detailed information.
 
 ##### `docker ps --all`
 

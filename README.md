@@ -75,17 +75,11 @@ Docker makes it simple to install and run software without worrying about setup 
 
 ##### `docker ps -a` - Same as `docker ps` but with more detailed information.
 
-##### `docker ps --all`
+##### `docker ps --all` - Lists all the containers that were executed.
 
-Lists all the containers that were executed.
+##### `docker rmi <image_id>` - Remove a docker image from the docker image cache by providing the image_id.
 
-##### `docker rmi <image_id>`
-
-Remove a docker image from the docker image cache by providing the image_id.
-
-##### `docker rmi <name_of_the_container>`
-
-Remove a docker image from the docker image cache by providing the name of the container.
+##### `docker rmi <name_of_the_container>` - Remove a docker image from the docker image cache by providing the name of the container.
 
 #### How does Docker work?
 
@@ -145,41 +139,23 @@ An image has a file system snapshot, dependencies and startup commands to execut
 Note that <i>image_id</i> or <i>container_id</i> are used indistinctible in the following commands but just recap that a container is an image which is being executed. 
 
 
-##### `docker create <image_name> <command>`
+##### `docker create <image_name> <command>` - Docker command to create an image.
 
-Docker command to create an image.
+##### `docker start -a <image_id>` - Docker command to start an image.
 
-##### `docker start -a <image_id>`
+##### `docker run <image_name>` - Docker command to create and start an image at the same time.
 
-Docker command to start an image.
+##### `docker system prune` - Erase all the containers that were executed and remove images from the image cache.
 
-##### `docker run <image_name>`
+##### `docker logs <container_id>` - Review the logs of a container
 
-Docker command to create and start an image at the same time.
+##### `docker stop <container_id>` - Stop a container 
 
-##### `docker system prune`
+##### `docker kill <container_id>` - Stop a container immediately
 
-Erase all the containers that were executed and remove images from the image cache.
+##### `docker exec -it <container_id> <command_to_run>` - Execute a command in a container (you need to open another terminal tab and run this command while the container is up).
 
-##### `docker logs <container_id>`
-
-Review the logs of a container
-
-##### `docker stop <container_id>`
-
-Stop a container 
-
-##### `docker kill <container_id>`
-
-Stop a container immediately
-
-##### `docker exec -it <container_id> <command_to_run>`
-
-Execute a command in a container (you need to open another terminal tab and run this command while the container is up).
-
-##### `docker exec -it <container_id> sh`
-
-Start a shell in the container.
+##### `docker exec -it <container_id> sh` - Start a shell in the container.
 
 #### How to create your own images in Docker?
 
@@ -197,9 +173,7 @@ This is a classic example of how to write a Docker file:
 
 In the lines from above, I am specifying to the Docker server to use alpine to download a set of pre-installed programs, then Docker updates redis and initializes the redis server. 
 
-This is how you can build your image once you have set up the docker file.
-
-##### `docker build .`
+##### `docker build .` - This is how you can build your image once you have set up the docker file.
 
 This is what happens when you build your image:
           
@@ -231,49 +205,29 @@ This is what happens when you build your image:
 
 The image gets built and a specific portion of RAM, CPU and processes have been created as well as a file system. Once the image is running, which is a container, it interacts with your machine so you can execute your desired instructions. 
 
-Tag your docker images
+##### `docker build -t alejandro/pythonprogram:latest .` - Tag your docker images
 
-##### `docker build -t alejandro/pythonprogram:latest .`
+##### `docker run -p 3001:8080 alejandro/pythonprogram` - Port mapping - this is a very important topic because once your container is up and running, you can get access to it either through the shell or by a port, that is, in your browser you can see the results of your container. The first port is your machine port and the second port is the port from your container.
 
-Port mapping - this is a very important topic because once your container is up and running, you can get access to it either through the shell or by a port, that is, in your browser you can see the results of your container. The first port is your machine port and the second port is the port from your container.
+##### `docker run -it alejandro/pythonprogram sh` - Debug a container by getting access to its shell
 
-##### `docker run -p 3001:8080 alejandro/pythonprogram`
-
-Debug a container by getting access to its shell:
-
-##### `docker run -it alejandro/pythonprogram sh`
-
-Debug a container by getting access to its shell when it is already running:
-
-##### `docker exec -it <image_id> sh`
+##### `docker exec -it <image_id> sh` - Debug a container by getting access to its shell when it is already running
 
 #### Run multiple Docker containers with Docker Compose
 
 Docker compose allows us to start multiple Docker containers at the same time, for instance, if we want to start a redis server and a node server then we can create this in a `docker-compose.yml` file.
 
-Execute the `.yml` file to initialize the multiple containers.
+##### `docker-compose up` - Execute the `.yml` file to initialize the multiple containers.
 
-##### `docker-compose up` 
+##### `docker build .` - Rebuild the docker file image.
 
-Rebuild the docker file image.
+##### `docker-compose up --build` - Rebuild the `.yml` file and initialize the multiple containers.
 
-##### `docker build .`
+##### `docker-compose up -d` - Start all your docker images and put them in the background.
 
-Rebuild the `.yml` file and initialize the multiple containers.
+##### `docker-compose down` - Shutdown the multiple docker containers.
 
-##### `docker-compose up --build`
-
-Start all your docker images and put them in the background.
-
-##### `docker-compose up -d`
-
-Shutdown the multiple docker containers.
-
-##### `docker-compose down`
-
-Rebuild a single docker image (Dockerfile.dev). We usually use this command with the -f for rebuilding the .dev file.
-
-##### `docker build -f Dockerfile.dev .`
+##### `docker build -f Dockerfile.dev .` - Rebuild a single docker image (Dockerfile.dev). We usually use this command with the -f for rebuilding the .dev file.
 
 #### Docker volumes
 
@@ -289,8 +243,6 @@ Whenever we edit any file from the local folder, then we have to rebuild the ima
                |_________________|       |_____________________|
 
 
-The docker volumes can be initialized in the `.yml` file or by terminal command with:
-
-##### `docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app <image_id>` 
+##### `docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app <image_id>` - The docker volumes can be initialized in the `.yml` file or by terminal command.
 
 Please refer to the docker-compose.yml file from the root folder to see how we converted this command into a script to be executed by Docker when doing `docker-compose up`. 

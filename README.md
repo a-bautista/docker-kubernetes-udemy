@@ -65,22 +65,6 @@ Docker works with images which are files that contain all dependencies and confi
 
 Docker makes it simple to install and run software without worrying about setup or dependency libraries. 
 
-#### Useful commands to know in Docker
-
-##### `docker run <image_name>` - Execute an image container with docker.
-
-##### `docker-compose up` - It is used to start multiple Docker containers at the same time.
-
-##### `docker ps` - It lists all the containers that are currently running. 
-
-##### `docker ps -a` - Same as `docker ps` but with more detailed information.
-
-##### `docker ps --all` - Lists all the containers that were executed.
-
-##### `docker rmi <image_id>` - Remove a docker image from the docker image cache by providing the image_id.
-
-##### `docker rmi <name_of_the_container>` - Remove a docker image from the docker image cache by providing the name of the container.
-
 #### How does Docker work?
 
 When you initialize an image,i.e., `docker run hello-world`, the docker client in your machine checks if you already have that image in your image cache and if this is not the case then the docker client contacts the docker server so this one contacts the DockerHub to request the image, then the image is stored in your image cache so you can have it ready the next time you want to execute it.
@@ -102,7 +86,7 @@ When you initialize an image,i.e., `docker run hello-world`, the docker client i
 Remember that a container is an instance of an image that is running. Suppose we want to run a legacy program that needs Python 2.7 and you need to use Chrome which needs needs Python 3.7. How do you setup these 2 Python versions in one same machine? You can use containers to maintain both versions of Python.
 
      ________________________________________ 
-    |  Conatiner A           Container B     |
+    |  Container A           Container B     |
     |   ----------------    --------------   |
     |  | Legacy program |  |   Chrome     |  |
     |  |      |         |  |      |       |  |
@@ -138,31 +122,12 @@ An image has a file system snapshot, dependencies and startup commands to execut
          
 Note that <i>image_id</i> or <i>container_id</i> are used indistinctible in the following commands but just recap that a container is an image which is being executed. 
 
-
-##### `docker create <image_name> <command>` - Docker command to create an image.
-
-##### `docker start -a <image_id>` - Docker command to start an image.
-
-##### `docker run <image_name>` - Docker command to create and start an image at the same time.
-
-##### `docker system prune` - Erase all the containers that were executed and remove images from the image cache.
-
-##### `docker logs <container_id>` - Review the logs of a container
-
-##### `docker stop <container_id>` - Stop a container 
-
-##### `docker kill <container_id>` - Stop a container immediately
-
-##### `docker exec -it <container_id> <command_to_run>` - Execute a command in a container (you need to open another terminal tab and run this command while the container is up).
-
-##### `docker exec -it <container_id> sh` - Start a shell in the container.
-
 #### How to create your own images in Docker?
 
 In order to run your images as containers you need to create a Dockerfile by:
 
 1. Specifying a base image.
-2. Executing some commands to add extra software.
+2. Defining the dependencies for your image.
 3. Specifying commands to initialize the image as a container when the system starts.
 
 This is a classic example of how to write a Docker file:
@@ -203,7 +168,7 @@ This is what happens when you build your image:
             |  ---------------------------------|   |
             |_______________________________________|  
 
-The image gets built and a specific portion of RAM, CPU and processes have been created as well as a file system. Once the image is running, which is a container, it interacts with your machine so you can execute your desired instructions. 
+The image is built and a specific portion of RAM, CPU and processes have been created as well as a file system. Once the image is running, which is a container, you can control the actions of the container from your machine local machine.  
 
 ##### `docker build -t alejandro/pythonprogram:latest .` - Tag your docker images
 
@@ -246,3 +211,40 @@ Whenever we edit any file from the local folder, then we have to rebuild the ima
 ##### `docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app <image_id>` - The docker volumes can be initialized in the `.yml` file or by terminal command.
 
 Please refer to the docker-compose.yml file from the root folder to see how we converted this command into a script to be executed by Docker when doing `docker-compose up`. 
+
+#### Useful commands to know in Docker
+
+##### `docker run <image_name>` - Execute an image container with docker.
+
+##### `docker-compose up` - It is used to start multiple Docker containers at the same time.
+
+##### `docker ps` - It lists all the containers that are currently running. 
+
+##### `docker ps -a` - Same as `docker ps` but with more detailed information.
+
+##### `docker image ls` - List all the docker images.
+
+##### `docker ps --all` - Lists all the containers that were executed.
+
+##### `docker rmi <image_id>` - Remove a docker image from the docker image cache by providing the image_id.
+
+##### `docker rmi <name_of_the_container>` - Remove a docker image from the docker image cache by providing the name of the container.
+
+##### `docker create <image_name> <command>` - Docker command to create an image.
+
+##### `docker start -a <image_id>` - Docker command to start an image.
+
+##### `docker run <image_name>` - Docker command to create and start an image at the same time.
+
+##### `docker system prune` - Erase all the containers that were executed and remove images from the image cache.
+
+##### `docker logs <container_id>` - Review the logs of a container
+
+##### `docker stop <container_id>` - Stop a container 
+
+##### `docker kill <container_id>` - Stop a container immediately
+
+##### `docker exec -it <container_id> <command_to_run>` - Execute a command in a container (you need to open another terminal tab and run this command while the container is up).
+
+##### `docker exec -it <container_id> sh` - Start a shell in the container.
+
